@@ -1,6 +1,6 @@
 <template>
   <div class="sales">
-    <h1 class="mb-5">Скидки</h1>
+    <h1 class="my-5">Скидки</h1>
 
     <div class="container">
       <div class="row mb-4">

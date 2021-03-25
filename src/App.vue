@@ -22,13 +22,7 @@
     </div>
 
     <div class="content">
-      <div class="centered">
-        <div class="in">
-
-          <router-view/>
-
-        </div>
-      </div>
+      <router-view/>
     </div>
 
     <footer class="footer">
@@ -55,18 +49,9 @@ html, body {
 
 .content {
   flex: 1 0 auto;
-  padding: 20px;
-}
-
-.centered {
-  height: 500px;
   display: flex;
-  align-items: center;
   justify-content: center;
-}
-
-.centered .in {
-  margin: 0;
+  background-color: #fafafa;
 }
 
 .footer {
@@ -81,7 +66,6 @@ html, body {
 .logo {
   background: #ffbc13;
   padding: 30px;
-  margin-bottom: 30px;
 }
 
 .head {
