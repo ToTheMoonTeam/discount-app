@@ -1,7 +1,9 @@
 <template>
   <div class="form">
 
+
     <div class="card-form">
+      <h1>Заполните форму для активации карты и доступа к персональным скидкам</h1>
       <form action="">
         <input type="text" class="form-control mb-2" placeholder="Имя">
         <input type="number" class="form-control mb-2" placeholder="Телефон">
