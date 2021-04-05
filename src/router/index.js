@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Form from '../components/Form.vue'
 import Sales from '../components/Sales.vue'
 import Admin from '../components/Admin.vue'
+import Login from '../components/Login.vue'
 
 Vue.use(VueRouter)
 
@@ -13,14 +14,19 @@ const routes = [
     component: Form
   },
   {
-    path: '/sales',
+    path: '/sales/:id',
     name: 'Sales',
     component: Sales
   },
   {
-    path: '/admin',
+    path: '/700af4ec-c7d8-4c9b-90ab-b3e44a1e89c0',
     name: 'Admin',
     component: Admin
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login
   }
 ]
 

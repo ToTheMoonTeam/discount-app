@@ -51,12 +51,13 @@ html, body {
   flex: 1 0 auto;
   display: flex;
   justify-content: center;
-  background-color: #fafafa;
+  background-color: #ffffff;
 }
 
 .footer {
   flex-shrink: 0;
   padding: 20px;
+  margin-top: 40px;
 }
 
 * {

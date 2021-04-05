@@ -1,38 +1,39 @@
 <template>
   <div class="admin">
 
-    <div class="card-form">
-      <h1 class="mb-4">Войти</h1>
+    <h1 class="m-5">Админка</h1>
 
-      <form action="">
-        <input type="text" class="form-control mb-2" placeholder="Логин">
-        <input type="text" class="form-control mb-4" placeholder="Пароль">
-        <button class="btn">Отправить</button>
-      </form>
-    </div>
+    <vuetable ref="vuetable"
+              :api-mode="false"
+              :data="allUsers"
+              :fields="['birthday', 'cards', 'id', 'name','phone_number', 'shipping_quality', 'work_quality']"
+    ></vuetable>
 
     <!--загружаемая табличка в excel-->
 
   </div>
 </template>
 
-<style scoped>
-.card-form {
-  background-color: #ffffff;
-  margin-top: 100px;
-  padding: 50px;
-  border-radius: 20px;
-}
+<script>
+import Vuetable from 'vuetable-2'
+import {AXIOS} from '@/http-common'
 
-form {
-  width: 250px;
-  height: auto;
-}
+export default {
+  components: {
+    Vuetable
+  },
 
-form .btn {
-  padding: 8px 15px;
-  background-color: #ffbc13;
-  text-transform: uppercase;
-  font-weight: 500;
+  data() {
+    return {
+      allUsers: []
+    }
+  },
+
+  created() {
+    AXIOS.get('/get_all_users')
+        .then(response => {
+          this.allUsers = Object.values(response.data.body.all_users)
+        })
+  }
 }
-</style>
+</script>
