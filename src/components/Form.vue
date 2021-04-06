@@ -26,24 +26,24 @@
         ></v-text-field>
 
         <v-select
-            :scores="scores"
+            :items="quality"
             label="Оцените качество поставки"
             v-model="shipping_quality"
         ></v-select>
 
         <v-select
-            :scores="scores"
+            :items="quality"
             label="Оцените качество работы"
             v-model="work_quality"
         ></v-select>
 
-        <div class="form-check m-4">
+        <div class="form-check mt-4">
           <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
           <label class="form-check-label" for="flexCheckDefault">
             Согласие на обработку персональных данных
           </label>
         </div>
-        <button class="btn">Отправить</button>
+        <v-btn class="mt-8" type="submit">Отправить</v-btn>
       </v-form>
     </div>
 
@@ -57,7 +57,7 @@ export default {
   name: 'Form',
   data() {
     return {
-      scores: [],
+      quality: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
       name: '',
       phone_number: '',
       birthday: '',
@@ -65,10 +65,6 @@ export default {
       shipping_quality: 0,
       work_quality: 0
     }
-  },
-
-  created: {
-    this.scores = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
   },
 
   methods: {
@@ -101,17 +97,5 @@ export default {
 
 .card-form h2 {
   margin-bottom: 30px;
-}
-
-form {
-  width: 380px;
-  margin: 0 auto;
-}
-
-form .btn {
-  padding: 8px 15px;
-  background-color: #ffbc13;
-  text-transform: uppercase;
-  font-weight: 500;
 }
 </style>

@@ -4,10 +4,14 @@
     <div class="card-form">
       <h1 class="mb-4">Войти</h1>
 
-      <form @submit.prevent="login">
-        <input class="form-control mb-4" placeholder="Пароль" v-model="password">
-        <button class="btn">Отправить</button>
-      </form>
+      <v-form @submit.prevent="login">
+        <v-text-field
+            label="Пароль"
+            v-model="password"
+        ></v-text-field>
+
+        <v-btn type="submit">Отправить</v-btn>
+      </v-form>
     </div>
 
   </div>
@@ -42,12 +46,5 @@ export default {
 form {
   width: 250px;
   height: auto;
-}
-
-form .btn {
-  padding: 8px 15px;
-  background-color: #ffbc13;
-  text-transform: uppercase;
-  font-weight: 500;
 }
 </style>

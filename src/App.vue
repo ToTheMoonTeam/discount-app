@@ -1,30 +1,31 @@
 <template>
   <div id="app">
-    <!--    Продажа нерудных материалов и аренда спецтехники в СПб и области -->
-    <!--    Работаем 24/7-->
-    <!--    Заказать звонок-->
+    <v-app>
+      <!--    Продажа нерудных материалов и аренда спецтехники в СПб и области -->
+      <!--    Работаем 24/7-->
+      <!--    Заказать звонок-->
 
-    <div class="head">
-      <div class="container">
-        <span>Продажа нерудных материалов и аренда спецтехники в СПб и области</span>
+      <div class="head">
+        <div class="container">
+          <span>Продажа нерудных материалов и аренда спецтехники в СПб и области</span>
+        </div>
       </div>
-    </div>
 
-    <div class="logo">
-      <a href="https://idealnerud.ru"><img src="@/assets/logo.png" alt=""></a>
-    </div>
-
-    <div class="content">
-      <router-view/>
-    </div>
-
-    <footer class="footer">
-      <div class="container">
-        <span>© 2021</span><span class="px-2">«ООО ИДЕАЛТРЕЙД»</span><a href="https://idealnerud.ru/policy/">Политика
-        конфиденциальности</a>
+      <div class="logo">
+        <a href="https://idealnerud.ru"><img src="@/assets/logo.png" alt=""></a>
       </div>
-    </footer>
 
+      <div class="content">
+        <router-view/>
+      </div>
+
+      <footer class="footer">
+        <div class="container">
+          <span>© 2021</span><span class="px-2">«ООО ИДЕАЛТРЕЙД»</span><a href="https://idealnerud.ru/policy/">Политика
+          конфиденциальности</a>
+        </div>
+      </footer>
+    </v-app>
   </div>
 </template>
 
@@ -78,4 +79,7 @@ html, body {
   padding: 20px;
   background: #1b1b1b;
 }
+</style>
+<style>
+@import 'assets/styles-for-vuetify.css'
 </style>
