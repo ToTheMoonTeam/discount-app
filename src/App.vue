@@ -1,12 +1,5 @@
 <template>
   <div id="app">
-
-    <!--    <div id="nav">-->
-    <!--      <router-link to="/">Form</router-link> |-->
-    <!--      <router-link to="/admin">Admin</router-link> |-->
-    <!--      <router-link to="/sales">Sales</router-link>-->
-    <!--    </div>-->
-
     <!--    Продажа нерудных материалов и аренда спецтехники в СПб и области -->
     <!--    Работаем 24/7-->
     <!--    Заказать звонок-->
@@ -45,6 +38,7 @@ html, body {
   flex-direction: column;
   height: 100%;
   text-align: center;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 .content {

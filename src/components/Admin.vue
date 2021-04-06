@@ -6,7 +6,7 @@
     <vuetable ref="vuetable"
               :api-mode="false"
               :data="allUsers"
-              :fields="['birthday', 'cards', 'id', 'name','phone_number', 'shipping_quality', 'work_quality']"
+              :fields="['Имя', 'Телефон', 'Номер карты', 'День рождения', 'Скидочные карты', 'Качество доставки', 'Качество работы']"
     ></vuetable>
 
     <!--загружаемая табличка в excel-->

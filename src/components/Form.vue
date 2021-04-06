@@ -2,38 +2,41 @@
   <div class="form">
 
     <div class="card-form">
-      <h2 class="mb-5">Заполните форму <br>для активации карты <br>и доступа к персональным скидкам</h2>
-      <form @submit.prevent="formSubmit">
-        <input class="form-control mb-2" placeholder="Имя" v-model="name"/>
-        <input class="form-control mb-2" placeholder="Телефон" v-model="phone_number"/>
-        <input class="form-control mb-2" placeholder="Дата рождения" v-model="birthday"/>
-        <input class="form-control mb-2" placeholder="Номер карты ИдеалТрейд" v-model="id"/>
-        <select class="form-select mb-2" v-model="shipping_quality">
-          <option value="0">Оцените качество поставки</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
-          <option value="10">10</option>
-        </select>
-        <select class="form-select mb-4" v-model="work_quality">
-          <option value="0">Оцените качество работы</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
-          <option value="10">10</option>
-        </select>
+      <h2>Заполните форму <br>для активации карты <br>и доступа к персональным скидкам</h2>
+
+      <v-form @submit.prevent="formSubmit">
+        <v-text-field
+            label="Имя"
+            v-model="name"
+        ></v-text-field>
+
+        <v-text-field
+            label="Телефон"
+            v-model="phone_number"
+        ></v-text-field>
+
+        <v-text-field
+            label="Дата рождения"
+            v-model="birthday"
+        ></v-text-field>
+
+        <v-text-field
+            label="Номер карты ИдеалТрейд"
+            v-model="id"
+        ></v-text-field>
+
+        <v-select
+            :scores="scores"
+            label="Оцените качество поставки"
+            v-model="shipping_quality"
+        ></v-select>
+
+        <v-select
+            :scores="scores"
+            label="Оцените качество работы"
+            v-model="work_quality"
+        ></v-select>
+
         <div class="form-check m-4">
           <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
           <label class="form-check-label" for="flexCheckDefault">
@@ -41,7 +44,7 @@
           </label>
         </div>
         <button class="btn">Отправить</button>
-      </form>
+      </v-form>
     </div>
 
   </div>
@@ -54,6 +57,7 @@ export default {
   name: 'Form',
   data() {
     return {
+      scores: [],
       name: '',
       phone_number: '',
       birthday: '',
@@ -62,6 +66,11 @@ export default {
       work_quality: 0
     }
   },
+
+  created: {
+    this.scores = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  },
+
   methods: {
     formSubmit() {
       AXIOS.post('/register', null, {
@@ -86,8 +95,12 @@ export default {
 
 <style scoped>
 .card-form {
-  margin-top: 20px;
+  margin-top: 40px;
   padding: 50px 70px;
+}
+
+.card-form h2 {
+  margin-bottom: 30px;
 }
 
 form {
