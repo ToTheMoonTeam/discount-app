@@ -9,6 +9,10 @@ Vue.use(VueRouter)
 
 const routes = [
   {
+    path: '*',
+    redirect: '/'
+  },
+  {
     path: '/',
     name: 'Form',
     component: Form
@@ -21,12 +25,14 @@ const routes = [
   {
     path: '/700af4ec-c7d8-4c9b-90ab-b3e44a1e89c0',
     name: 'Admin',
-    component: Admin
+    component: Admin,
+    meta: { layout: 'empty' }
   },
   {
     path: '/login',
     name: 'Login',
-    component: Login
+    component: Login,
+    meta: { layout: 'empty' }
   }
 ]
 

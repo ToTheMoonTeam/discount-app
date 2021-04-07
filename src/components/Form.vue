@@ -6,44 +6,50 @@
 
       <v-form @submit.prevent="formSubmit">
         <v-text-field
+            color="amber accent-4"
             label="Имя"
             v-model="name"
         ></v-text-field>
 
         <v-text-field
+            color="amber accent-4"
             label="Телефон"
             v-model="phone_number"
         ></v-text-field>
 
         <v-text-field
+            color="amber accent-4"
             label="Дата рождения"
             v-model="birthday"
         ></v-text-field>
 
         <v-text-field
+            color="amber accent-4"
             label="Номер карты ИдеалТрейд"
             v-model="id"
         ></v-text-field>
 
         <v-select
+            color="amber accent-4"
             :items="quality"
             label="Оцените качество поставки"
             v-model="shipping_quality"
         ></v-select>
 
         <v-select
+            color="amber accent-4"
             :items="quality"
             label="Оцените качество работы"
             v-model="work_quality"
         ></v-select>
 
-        <div class="form-check mt-4">
-          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-          <label class="form-check-label" for="flexCheckDefault">
-            Согласие на обработку персональных данных
-          </label>
-        </div>
-        <v-btn class="mt-8" type="submit">Отправить</v-btn>
+        <v-checkbox
+            color="amber accent-4"
+            label="Согласие на обработку персональных данных"
+            hide-details
+        ></v-checkbox>
+
+        <v-btn class="mt-8" color="amber accent-3" type="submit">Отправить</v-btn>
       </v-form>
     </div>
 

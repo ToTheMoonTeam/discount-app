@@ -27,9 +27,8 @@
           >
             <template v-slot:activator="{ on, attrs }">
               <v-btn
-                  color="primary"
-                  dark
-                  class="mb-2"
+                  color="amber accent-3"
+                  class="mb-2 myClass"
                   v-bind="attrs"
                   v-on="on"
               >
@@ -38,7 +37,7 @@
             </template>
             <v-card>
               <v-card-title>
-                <span class="headline">Создать скидочную карту</span>
+                <span class="headline mt-5 ml-5">Создать скидочную карту</span>
               </v-card-title>
 
               <v-card-text>
@@ -46,26 +45,26 @@
                   <v-text-field
                       v-model="company_name"
                       label="Название компании"
+                      color="amber accent-4"
                   ></v-text-field>
                   <v-text-field
                       v-model="sale"
                       label="Размер скидки"
+                      color="amber accent-4"
                   ></v-text-field>
                 </v-container>
               </v-card-text>
 
-              <v-card-actions>
+              <v-card-actions class="pb-4">
                 <v-spacer></v-spacer>
                 <v-btn
-                    color="blue darken-1"
-                    text
+                    color="amber accent-3"
                     @click="close"
                 >
                   Закрыть
                 </v-btn>
                 <v-btn
-                    color="blue darken-1"
-                    text
+                    color="amber accent-3"
                     @click="createCard"
                 >
                   Создать
@@ -75,11 +74,10 @@
           </v-dialog>
 
           <v-btn
-              color="primary"
+              color="amber accent-3"
               class="ml-3 mb-2"
-              dark
           >
-            <v-icon dark>
+            <v-icon color="black">
               mdi-microsoft-excel
             </v-icon>
           </v-btn>
@@ -146,7 +144,6 @@ export default {
         {text: 'Телефон', value: 'phone_number'},
         {text: 'Номер карты', value: 'id'},
         {text: 'День рождения', value: 'birthday'},
-        {text: 'Cкидочные карты', value: 'cards'},
         {text: 'Качество доставки', value: 'shipping_quality'},
         {text: 'Качество работы', value: 'work_quality'},
         {text: 'Действия', value: 'action', sortable: false},
@@ -200,4 +197,7 @@ export default {
 </script>
 
 <style scoped>
+.myClass:focus::before {
+  opacity: 0 !important;
+}
 </style>

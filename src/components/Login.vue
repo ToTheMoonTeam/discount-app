@@ -2,15 +2,15 @@
   <div class="login">
 
     <div class="card-form">
-      <h1 class="mb-4">Войти</h1>
 
       <v-form @submit.prevent="login">
         <v-text-field
             label="Пароль"
             v-model="password"
+            color="amber accent-4"
         ></v-text-field>
 
-        <v-btn type="submit">Отправить</v-btn>
+        <v-btn type="submit" color="amber accent-3">Войти</v-btn>
       </v-form>
     </div>
 
@@ -38,7 +38,7 @@ export default {
 <style scoped>
 .card-form {
   background-color: #ffffff;
-  margin-top: 100px;
+  margin-top: 200px;
   padding: 50px;
   border-radius: 20px;
 }
