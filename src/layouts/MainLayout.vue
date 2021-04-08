@@ -7,14 +7,9 @@
       <!--    Заказать звонок-->
 
       <div class="head">
-        <v-spacer></v-spacer>
-        <v-spacer></v-spacer>
-        <v-spacer></v-spacer>
-        <v-spacer></v-spacer>
-        <div class="container">
-          <span>Продажа нерудных материалов и аренда спецтехники в СПб и области</span>
-        </div>
-        <v-spacer></v-spacer>
+        <v-container>
+          <span style="margin-left: 110px">Продажа нерудных материалов и аренда спецтехники в СПб и области</span>
+        </v-container>
         <v-btn class="mt-1" text dark @click="goToLogin">Войти</v-btn>
       </div>
 

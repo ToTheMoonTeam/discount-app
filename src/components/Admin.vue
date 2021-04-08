@@ -7,8 +7,8 @@
         disable-pagination
         :hide-default-footer="true"
         class="my-15"
-        @click:row="dialogUserCards = true"
     >
+
       <template v-slot:top>
         <v-toolbar
             flat
@@ -77,7 +77,7 @@
               color="amber accent-3"
               class="ml-3 mb-2"
           >
-            <v-icon color="black">
+            <v-icon color="black" @click="exportExcel">
               mdi-microsoft-excel
             </v-icon>
           </v-btn>
@@ -102,15 +102,51 @@
 
     <v-dialog
         v-model="dialogUserCards"
-        width="500"
+        width="1000"
     >
       <v-card>
         <v-card-title class="headline grey lighten-2">
-          Privacy Policy
+          Скидочные карты
         </v-card-title>
 
         <v-card-text>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          <h3>Скидочные карты пользователя:</h3>
+          <div v-if="this.userCards.length === 0">
+            У пользователя нет карт
+          </div>
+          <div v-else>
+            <v-card
+                v-for="card in userCards"
+                :key="card.id"
+                elevation="2"
+            >
+              <v-card-title>
+                {{ card.company_name }}
+              </v-card-title>
+              <v-card-text>
+                {{ card.sale * 100 }} %
+              </v-card-text>
+            </v-card>
+          </div>
+
+          <h3>Все скидочные карты:</h3>
+          <div v-if="this.allCards.length === 0">
+            <p>У вас нет созданных карт</p>
+          </div>
+          <div v-else>
+            <v-card
+                v-for="card in allCards"
+                :key="card.id"
+                elevation="2"
+            >
+              <v-card-title>
+                {{ card.company_name }}
+              </v-card-title>
+              <v-card-text>
+                {{ card.sale * 100 }} %
+              </v-card-text>
+            </v-card>
+          </div>
         </v-card-text>
 
         <v-divider></v-divider>
@@ -120,20 +156,20 @@
           <v-btn
               color="primary"
               text
-              @click="dialog = false"
+              @click="dialogUserCards = false"
           >
-            I accept
+            Закрыть
           </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
-
 
   </div>
 </template>
 
 <script>
 import {AXIOS} from '@/http-common'
+import moment from 'moment'
 
 export default {
   data() {
@@ -152,13 +188,21 @@ export default {
       company_name: '',
       dialog: false,
       dialogUserCards: false,
+      userCards: [],
+      allCards: []
     }
   },
+
+  computed: {},
 
   created() {
     AXIOS.get('/get_all_users')
         .then(response => {
-          this.allUsers = Object.values(response.data.body.all_users)
+          const allUsers = Object.values(response.data.body.all_users)
+          allUsers.forEach(function (user) {
+            user.birthday = moment(user.birthday).format('DD.MM.YYYY')
+          })
+          this.allUsers = allUsers
         })
   },
 
@@ -167,13 +211,28 @@ export default {
       this.dialog = false
     },
     addCards(item) {
-      AXIOS.post('/link_card', null, {
+      this.dialogUserCards = true
+      AXIOS.get('/get_users_cards', {
         params: {
           user_id: item.id,
-          card_id: ''
         }
       })
-      this.$router.go()
+          .then(response => {
+            this.userCards = Object.values(response.data.body.cards)
+          })
+
+      AXIOS.get('/get_all_cards')
+          .then(response => {
+            this.allCards = Object.values(response.data.body.all_cards)
+          })
+
+
+      // AXIOS.post('/link_card', null, {
+      //   params: {
+      //     user_id: item.id,
+      //     card_id: ''
+      //   }
+      // })
     },
     deleteItem(item) {
       AXIOS.post('/remove_user', null, {
@@ -191,6 +250,12 @@ export default {
         }
       })
       this.dialog = false
+    },
+    exportExcel() {
+      AXIOS.get('/export_excele')
+          .then((response) => {
+
+          })
     }
   }
 }
