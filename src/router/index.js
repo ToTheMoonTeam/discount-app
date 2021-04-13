@@ -23,7 +23,7 @@ const routes = [
     component: Sales
   },
   {
-    path: '/700af4ec-c7d8-4c9b-90ab-b3e44a1e89c0',
+    path: '/admin',
     name: 'Admin',
     component: Admin,
     meta: { layout: 'empty' }

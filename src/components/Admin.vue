@@ -110,7 +110,7 @@
         </v-card-title>
 
         <v-card-text>
-          <h3>Скидочные карты пользователя:</h3>
+          <h2 class="my-5">Скидочные карты пользователя:</h2>
           <div v-if="this.userCards.length === 0">
             У пользователя нет карт
           </div>
@@ -118,7 +118,6 @@
             <v-card
                 v-for="card in userCards"
                 :key="card.id"
-                elevation="2"
             >
               <v-card-title>
                 {{ card.company_name }}
@@ -129,22 +128,35 @@
             </v-card>
           </div>
 
-          <h3>Все скидочные карты:</h3>
+          <h2 class="my-5">Все скидочные карты:</h2>
           <div v-if="this.allCards.length === 0">
             <p>У вас нет созданных карт</p>
           </div>
-          <div v-else>
+          <div v-else class="d-flex justify-space-between flex-wrap">
             <v-card
                 v-for="card in allCards"
                 :key="card.id"
-                elevation="2"
+                class="ma-4"
+                width="200px"
             >
               <v-card-title>
-                {{ card.company_name }}
+                <v-spacer>
+                  {{ card.company_name }}
+                </v-spacer>
               </v-card-title>
               <v-card-text>
                 {{ card.sale * 100 }} %
               </v-card-text>
+              <v-card-actions>
+                <v-spacer>
+                  <v-btn
+                      color="amber accent-3"
+                      class="mb-4"
+                      small>
+                    Добавить
+                  </v-btn>
+                </v-spacer>
+              </v-card-actions>
             </v-card>
           </div>
         </v-card-text>
@@ -250,11 +262,13 @@ export default {
         }
       })
       this.dialog = false
+      this.sale = null
+      this.company_name = ''
     },
     exportExcel() {
       AXIOS.get('/export_excele')
           .then((response) => {
-
+            console.log(response.data)
           })
     }
   }

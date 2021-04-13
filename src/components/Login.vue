@@ -28,7 +28,7 @@ export default {
   methods: {
     login() {
       if (this.password === 'admin') {
-        this.$router.go(this.$router.push('/700af4ec-c7d8-4c9b-90ab-b3e44a1e89c0'))
+        this.$router.go(this.$router.push('/admin'))
       }
     }
   }
