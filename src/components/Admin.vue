@@ -260,6 +260,7 @@ export default {
             this.allCards = Object.values(response.data.body.all_cards)
           })
     },
+
     deleteItem(item) {
       AXIOS.post('/remove_user', null, {
         params: {
@@ -288,13 +289,17 @@ export default {
           user_id: this.user_id
         }
       })
-      AXIOS.get('/get_users_cards', {
-        params: {
-          user_id: this.user_id,
-        }
-      })
           .then(response => {
-            this.userCards = Object.values(response.data.body.cards)
+            if (response.status === 200) {
+              AXIOS.get('/get_users_cards', {
+                params: {
+                  user_id: this.user_id,
+                }
+              })
+                  .then(response => {
+                    this.userCards = Object.values(response.data.body.cards)
+                  })
+            }
           })
     }
   }
