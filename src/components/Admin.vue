@@ -58,8 +58,9 @@
               <v-card-actions class="pb-4">
                 <v-spacer></v-spacer>
                 <v-btn
-                    color="amber accent-3"
-                    @click="close"
+                    color="amber accent-4"
+                    text
+                    @click="dialog = false"
                 >
                   Закрыть
                 </v-btn>
@@ -76,17 +77,20 @@
           <v-btn
               color="amber accent-3"
               class="ml-3 mb-2"
+              href="http://127.0.0.1:5000/export_excele"
+              target="_blank"
           >
-            <v-icon color="black" @click="exportExcel">
+            <v-icon color="black">
               mdi-microsoft-excel
             </v-icon>
           </v-btn>
 
         </v-toolbar>
       </template>
+
       <template v-slot:item.action="{ item }">
         <v-icon
-            @click="addCards(item)"
+            @click="openDialog(item)"
             class="mr-3"
         >
           mdi-plus-circle
@@ -114,17 +118,34 @@
           <div v-if="this.userCards.length === 0">
             У пользователя нет карт
           </div>
-          <div v-else>
+          <div v-else class="d-flex justify-center flex-wrap">
             <v-card
+                outlined
+                rounded
                 v-for="card in userCards"
                 :key="card.id"
+                class="ma-4"
+                width="200px"
             >
               <v-card-title>
-                {{ card.company_name }}
+                <v-spacer>
+                  {{ card.company_name }}
+                </v-spacer>
               </v-card-title>
               <v-card-text>
                 {{ card.sale * 100 }} %
               </v-card-text>
+              <v-card-actions>
+                <v-spacer>
+                  <v-btn
+                      color="amber accent-3"
+                      class="mb-4"
+                      small
+                  >
+                    Удалить
+                  </v-btn>
+                </v-spacer>
+              </v-card-actions>
             </v-card>
           </div>
 
@@ -132,8 +153,10 @@
           <div v-if="this.allCards.length === 0">
             <p>У вас нет созданных карт</p>
           </div>
-          <div v-else class="d-flex justify-space-between flex-wrap">
+          <div v-else class="d-flex justify-center flex-wrap">
             <v-card
+                outlined
+                rounded
                 v-for="card in allCards"
                 :key="card.id"
                 class="ma-4"
@@ -152,7 +175,9 @@
                   <v-btn
                       color="amber accent-3"
                       class="mb-4"
-                      small>
+                      small
+                      @click="linkCard(card.id)"
+                  >
                     Добавить
                   </v-btn>
                 </v-spacer>
@@ -166,7 +191,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn
-              color="primary"
+              color="amber accent-4"
               text
               @click="dialogUserCards = false"
           >
@@ -200,12 +225,11 @@ export default {
       company_name: '',
       dialog: false,
       dialogUserCards: false,
+      user_id: null,
       userCards: [],
       allCards: []
     }
   },
-
-  computed: {},
 
   created() {
     AXIOS.get('/get_all_users')
@@ -219,11 +243,9 @@ export default {
   },
 
   methods: {
-    close() {
-      this.dialog = false
-    },
-    addCards(item) {
+    openDialog(item) {
       this.dialogUserCards = true
+      this.user_id = item.id
       AXIOS.get('/get_users_cards', {
         params: {
           user_id: item.id,
@@ -237,14 +259,6 @@ export default {
           .then(response => {
             this.allCards = Object.values(response.data.body.all_cards)
           })
-
-
-      // AXIOS.post('/link_card', null, {
-      //   params: {
-      //     user_id: item.id,
-      //     card_id: ''
-      //   }
-      // })
     },
     deleteItem(item) {
       AXIOS.post('/remove_user', null, {
@@ -254,6 +268,7 @@ export default {
       })
       this.$router.go()
     },
+
     createCard() {
       AXIOS.post('/register_card', null, {
         params: {
@@ -265,10 +280,21 @@ export default {
       this.sale = null
       this.company_name = ''
     },
-    exportExcel() {
-      AXIOS.get('/export_excele')
-          .then((response) => {
-            console.log(response.data)
+
+    linkCard(cardId) {
+      AXIOS.post('/link_card', null, {
+        params: {
+          card_id: cardId,
+          user_id: this.user_id
+        }
+      })
+      AXIOS.get('/get_users_cards', {
+        params: {
+          user_id: this.user_id,
+        }
+      })
+          .then(response => {
+            this.userCards = Object.values(response.data.body.cards)
           })
     }
   }
