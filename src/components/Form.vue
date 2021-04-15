@@ -4,17 +4,25 @@
     <div class="card-form">
       <h2>Заполните форму <br>для активации карты <br>и доступа к персональным скидкам</h2>
 
-      <v-form @submit.prevent="formSubmit">
+      <v-form @submit.prevent="formSubmit"
+              ref="form"
+              v-model="valid"
+              lazy-validation
+      >
         <v-text-field
             color="amber accent-4"
             label="Имя"
             v-model="name"
+            required
+            :rules="[v => !!v || 'Введите имя']"
         ></v-text-field>
 
         <v-text-field
             color="amber accent-4"
             label="Телефон"
             v-model="phone_number"
+            required
+            :rules="[v => !!v || 'Введите номер телефона']"
         ></v-text-field>
 
         <v-menu
@@ -34,6 +42,8 @@
                 v-bind="attrs"
                 v-on="on"
                 color="amber accent-4"
+                required
+                :rules="[v => !!v || 'Выберите дату рождения']"
             ></v-text-field>
           </template>
           <v-date-picker
@@ -58,6 +68,8 @@
             :items="quality"
             label="Оцените качество поставки"
             v-model="shipping_quality"
+            required
+            :rules="[v => !!v || 'Выберите']"
         ></v-select>
 
         <v-select
@@ -65,15 +77,19 @@
             :items="quality"
             label="Оцените качество работы"
             v-model="work_quality"
+            required
+            :rules="[v => !!v || 'Выберите']"
         ></v-select>
 
         <v-checkbox
             color="amber accent-4"
             label="Согласие на обработку персональных данных"
-            hide-details
+            required
+            v-model="checkbox"
+            :rules="[v => !!v || 'Вы должны согласиться, чтобы продолжить']"
         ></v-checkbox>
 
-        <v-btn class="mt-8" color="amber accent-3" type="submit">Отправить</v-btn>
+        <v-btn class="mt-8" color="amber accent-3" type="submit" :disabled="!valid" @click="validate">Отправить</v-btn>
       </v-form>
     </div>
 
@@ -93,8 +109,10 @@ export default {
       date: null,
       menu: false,
       id: null,
-      shipping_quality: 0,
-      work_quality: 0
+      shipping_quality: null,
+      work_quality: null,
+      valid: true,
+      checkbox: false
     }
   },
 
@@ -105,6 +123,10 @@ export default {
   },
 
   methods: {
+    validate () {
+      this.$refs.form.validate()
+    },
+
     save(date) {
       this.$refs.menu.save(date)
     },
