@@ -221,12 +221,6 @@ export default {
     },
 
     linkCard(card) {
-      AXIOS.post('/register_card', null, {
-        params: {
-          company_name: card.company_name,
-          sale: card.sale
-        }
-      })
       AXIOS.post('/link_card', null, {
         params: {
           card_id: card.id,
