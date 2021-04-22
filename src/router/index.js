@@ -4,6 +4,7 @@ import Form from '../components/Form.vue'
 import Sales from '../components/Sales.vue'
 import Admin from '../components/Admin.vue'
 import Login from '../components/Login.vue'
+import Prostomarik from '../components/Prostomarik.vue'
 
 Vue.use(VueRouter)
 
@@ -14,6 +15,12 @@ const routes = [
   },
   {
     path: '/',
+    name: 'Prostomarik',
+    component: Prostomarik,
+    meta: { layout: 'empty' }
+  },
+  {
+    path: '/sales-cards',
     name: 'Form',
     component: Form
   },
