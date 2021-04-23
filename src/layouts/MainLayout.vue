@@ -8,9 +8,9 @@
 
       <div class="head">
         <v-container>
-          <span style="margin-left: 110px">Продажа нерудных материалов и аренда спецтехники в СПб и области</span>
+          <span class="text">Продажа нерудных материалов и аренда спецтехники в СПб и области</span>
         </v-container>
-        <v-btn class="mt-1" text dark @click="goToLogin">Войти</v-btn>
+        <v-btn class="mt-1 btn" text dark @click="goToLogin">Войти</v-btn>
       </div>
 
       <div class="logo">
@@ -34,7 +34,7 @@
 export default {
   methods: {
     goToLogin() {
-      this.$router.go(this.$router.push('/login'))
+      this.$router.go(this.$router.push('/sales-cards/login'))
     }
   }
 }
@@ -90,5 +90,18 @@ html, body {
   text-transform: uppercase;
   padding: 20px;
   background: #1b1b1b;
+}
+
+.text {
+  margin-left: 110px
+}
+
+@media screen and (max-width: 700px) {
+  .head .text {
+    margin-left: 0;
+  }
+  .head {
+    align-items: center;
+  }
 }
 </style>

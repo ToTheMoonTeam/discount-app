@@ -46,7 +46,7 @@ export default {
     },
     login() {
       if (this.password === 'admin') {
-        this.$router.go(this.$router.push('/admin'))
+        this.$router.go(this.$router.push('/sales-cards/admin'))
       }
     }
   }

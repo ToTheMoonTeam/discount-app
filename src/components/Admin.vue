@@ -13,7 +13,7 @@
         <v-toolbar
             flat
         >
-          <v-toolbar-title>Таблица с пользователями</v-toolbar-title>
+          <v-toolbar-title>Клиенты</v-toolbar-title>
           <v-divider
               class="mx-4"
               inset
@@ -21,12 +21,12 @@
           ></v-divider>
           <v-spacer></v-spacer>
 
-          <CreateSaleCardDialog />
+<!--          <CreateSaleCardDialog />-->
 
           <v-btn
               color="amber accent-3"
               class="ml-3 mb-2"
-              href="http://127.0.0.1:5000/export_excele"
+              href="http://vasiliy566.pythonanywhere.com/export_excele"
               target="_blank"
           >
             <v-icon color="black">
@@ -156,12 +156,12 @@
 <script>
 import {AXIOS} from '@/http-common'
 import moment from 'moment'
-import CreateSaleCardDialog from '@/components/admin/CreateSaleCardDialog'
+// import CreateSaleCardDialog from '@/components/admin/CreateSaleCardDialog'
 
 export default {
-  components: {
-    CreateSaleCardDialog
-  },
+  // components: {
+  //   CreateSaleCardDialog
+  // },
   data() {
     return {
       allUsers: [],
@@ -245,5 +245,6 @@ export default {
 </script>
 
 <style scoped>
+
 
 </style>

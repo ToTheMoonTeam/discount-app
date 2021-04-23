@@ -17,6 +17,10 @@ export default {
 </script>
 
 <style scoped>
+body {
+  background-color: black;
+}
+
 .prostomarik {
   background: #000000;
   height: 100%;
@@ -34,14 +38,11 @@ export default {
 
 .prostomarik .btn {
   margin: 0;
-  /*border-radius: 25px;*/
-  /*background: #c5cdd5;*/
-  /*padding: 20px 40px;*/
 }
 
 .btn img {
-  width: 400px;
-  height: 400px;
+  width: 375px;
+  height: 375px;
 }
 
 .btn h1 {

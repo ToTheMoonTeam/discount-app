@@ -144,7 +144,7 @@ export default {
       })
           .then(response => {
             if (response.status === 200) {
-              this.$router.go(this.$router.push('/sales/' + response.data.body.usr.id))
+              this.$router.go(this.$router.push('/sales-cards/sales/' + response.data.body.usr.id))
             }
           })
     }
@@ -160,5 +160,11 @@ export default {
 
 .card-form h2 {
   margin-bottom: 30px;
+}
+
+@media screen and (max-width: 700px) {
+  .card-form h2 {
+    font-size: 18px;
+  }
 }
 </style>

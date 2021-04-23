@@ -51,34 +51,7 @@ html, body {
   background-color: #ffffff;
 }
 
-.footer {
-  flex-shrink: 0;
-  padding: 20px;
-  margin-top: 40px;
-}
-
 * {
   box-sizing: border-box;
-}
-
-.logo {
-  background: #ffbc13;
-  padding: 30px;
-}
-
-.head {
-  background: #1b1b1b;
-  color: #fff;
-  text-align: center;
-  padding: 10px;
-  font-size: 14px;
-}
-
-.footer {
-  color: #fff;
-  text-align: center;
-  text-transform: uppercase;
-  padding: 20px;
-  background: #1b1b1b;
 }
 </style>

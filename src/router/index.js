@@ -17,7 +17,7 @@ const routes = [
     path: '/',
     name: 'Prostomarik',
     component: Prostomarik,
-    meta: { layout: 'empty' }
+    meta: { layout: 'dark' }
   },
   {
     path: '/sales-cards',
@@ -25,18 +25,18 @@ const routes = [
     component: Form
   },
   {
-    path: '/sales/:id',
+    path: '/sales-cards/sales/:id',
     name: 'Sales',
     component: Sales
   },
   {
-    path: '/admin',
+    path: '/sales-cards/admin',
     name: 'Admin',
     component: Admin,
     meta: { layout: 'empty' }
   },
   {
-    path: '/login',
+    path: '/sales-cards/login',
     name: 'Login',
     component: Login,
     meta: { layout: 'empty' }

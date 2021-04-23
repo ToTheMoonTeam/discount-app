@@ -27,7 +27,6 @@ html, body {
   flex: 1 0 auto;
   display: flex;
   justify-content: center;
-  background-color: #ffffff;
 }
 
 * {
