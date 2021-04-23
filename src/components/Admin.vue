@@ -26,7 +26,7 @@
           <v-btn
               color="amber accent-3"
               class="ml-3 mb-2"
-              href="http://vasiliy566.pythonanywhere.com/export_excele"
+              href="https://vasiliy566.pythonanywhere.com/export_excele"
               target="_blank"
           >
             <v-icon color="black">
