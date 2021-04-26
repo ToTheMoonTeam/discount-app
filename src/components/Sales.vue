@@ -7,23 +7,35 @@
     </div>
     <div v-else class="d-flex justify-center flex-wrap">
       <v-card
+          outlined
+          rounded
           v-for="card in userCards"
           :key="card.id"
-          class="ma-4 pb-5 pt-3 px-4"
-          width="300px"
-          outlined
+          class="ma-4 pa-5"
+          width="400px"
       >
-        <v-card-title>
+        <v-img
+            v-if="card.id === 1"
+            width="150px"
+            class="mx-auto"
+            src="@/assets/1.png"
+        ></v-img>
+        <v-img
+            class="ma-5"
+            v-if="card.id === 2"
+            src="@/assets/2.png"
+        ></v-img>
+        <v-card-title v-if="card.id !== 2">
           <v-spacer>
             {{ card.company_name }}
           </v-spacer>
         </v-card-title>
-
         <v-card-text>
-          <h1>{{ card.sale * 100 }} %</h1>
+          <p class="mb-7" v-if="card.id === 2">Работы по инженерным сетям и автоматике: <a href="https://elsvz.ru">Elsvz.ru</a></p>
+          <h1 class="yellow--text text--darken-3">{{ card.sale * 100 }}%</h1>
         </v-card-text>
-
       </v-card>
+
 
     </div>
 

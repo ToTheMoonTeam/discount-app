@@ -22,7 +22,11 @@
             label="Телефон"
             v-model="phone_number"
             required
-            :rules="[v => !!v || 'Введите номер телефона']"
+            type="number"
+            :rules="[
+                v => !!v || 'Введите номер телефона',
+                v => (v.length === 11) || 'Номер телефона должен быть в формате: 89123456789',
+            ]"
         ></v-text-field>
 
         <v-menu
