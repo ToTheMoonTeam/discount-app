@@ -252,7 +252,6 @@ export default {
       })
           .then(response => {
             this.userCards = Object.values(response.data.body.cards)
-            console.log(this.userCards)
           })
     },
 
