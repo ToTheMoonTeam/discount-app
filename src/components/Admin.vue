@@ -236,6 +236,12 @@ export default {
           id: item.id
         }
       })
+          .then(response => {
+            if (response.status === 200) {
+              this.$router.go()
+            }
+          })
+
     },
 
     getUsersCards() {
@@ -246,29 +252,22 @@ export default {
       })
           .then(response => {
             this.userCards = Object.values(response.data.body.cards)
+            console.log(this.userCards)
           })
     },
 
     linkCard(card) {
-      console.log(this.userCards)
-      for (let item in this.userCards) {
-        if (this.userCards[item].company_name === card.company_name) {
-          alert('Такая карточка уже есть у этого пользователя')
-          return
-        } else {
-          AXIOS.post('/link_card', null, {
-            params: {
-              card_id: card.id,
-              user_id: this.user_id
+      AXIOS.post('/link_card', null, {
+        params: {
+          card_id: card.id,
+          user_id: this.user_id
+        }
+      })
+          .then(response => {
+            if (response.status === 200) {
+              this.getUsersCards()
             }
           })
-              .then(response => {
-                if (response.status === 200) {
-                  this.getUsersCards()
-                }
-              })
-        }
-      }
     }
   }
 }
