@@ -21,7 +21,7 @@
           ></v-divider>
           <v-spacer></v-spacer>
 
-<!--          <CreateSaleCardDialog />-->
+          <!--          <CreateSaleCardDialog />-->
 
           <v-btn
               color="amber accent-3"
@@ -77,23 +77,24 @@
                 width="300px"
             >
               <v-img
-                  v-if="card.id === 1"
+                  v-if="card.company_name === 'Ваш Строитель'"
                   width="150px"
                   class="mx-auto"
                   src="@/assets/1.png"
               ></v-img>
               <v-img
                   class="ma-4"
-                  v-if="card.id === 2"
+                  v-if="card.company_name === 'Elsvz.ru'"
                   src="@/assets/2.png"
               ></v-img>
-              <v-card-title v-if="card.id !== 2">
+              <v-card-title v-if="card.company_name !== 'Elsvz.ru'">
                 <v-spacer>
                   {{ card.company_name }}
                 </v-spacer>
               </v-card-title>
               <v-card-text>
-                <p class="mb-7" v-if="card.id === 2">Работы по инженерным сетям и автоматике: <a href="https://elsvz.ru" target="_blank">Elsvz.ru</a></p>
+                <p class="mb-7" v-if="card.company_name === 'Elsvz.ru'">Работы по инженерным сетям и автоматике: <a
+                    href="https://elsvz.ru" target="_blank">Elsvz.ru</a></p>
                 <h1 class="yellow--text text--darken-3">{{ card.sale * 100 }}%</h1>
               </v-card-text>
               <v-card-actions>
@@ -124,23 +125,24 @@
                 width="300px"
             >
               <v-img
-                  v-if="card.id === 1"
+                  v-if="card.company_name === 'Ваш Строитель'"
                   width="150px"
                   class="mx-auto"
                   src="@/assets/1.png"
               ></v-img>
               <v-img
                   class="ma-4"
-                  v-if="card.id === 2"
+                  v-if="card.company_name === 'Elsvz.ru'"
                   src="@/assets/2.png"
               ></v-img>
-              <v-card-title v-if="card.id !== 2">
+              <v-card-title v-if="card.company_name !== 'Elsvz.ru'">
                 <v-spacer>
                   {{ card.company_name }}
                 </v-spacer>
               </v-card-title>
               <v-card-text>
-                <p class="mb-7" v-if="card.id === 2">Работы по инженерным сетям и автоматике: <a href="https://elsvz.ru">Elsvz.ru</a></p>
+                <p class="mb-7" v-if="card.company_name === 'Elsvz.ru'">Работы по инженерным сетям и автоматике: <a
+                    href="https://elsvz.ru">Elsvz.ru</a></p>
                 <h1 class="yellow--text text--darken-3">{{ card.sale * 100 }}%</h1>
               </v-card-text>
               <v-card-actions>
@@ -219,14 +221,8 @@ export default {
     openDialog(item) {
       this.dialogUserCards = true
       this.user_id = item.id
-      AXIOS.get('/get_users_cards', {
-        params: {
-          user_id: item.id,
-        }
-      })
-          .then(response => {
-            this.userCards = Object.values(response.data.body.cards)
-          })
+
+      this.getUsersCards()
 
       AXIOS.get('/get_all_cards')
           .then(response => {
@@ -240,34 +236,40 @@ export default {
           id: item.id
         }
       })
-      this.$router.go()
     },
 
-    linkCard(card) {
-      AXIOS.post('/link_card', null, {
+    getUsersCards() {
+      AXIOS.get('/get_users_cards', {
         params: {
-          card_id: card.id,
-          user_id: this.user_id
+          user_id: this.user_id,
         }
       })
           .then(response => {
-            if (response.status === 200) {
-              AXIOS.get('/get_users_cards', {
-                params: {
-                  user_id: this.user_id,
-                }
-              })
-                  .then(response => {
-                    this.userCards = Object.values(response.data.body.cards)
-                  })
+            this.userCards = Object.values(response.data.body.cards)
+          })
+    },
+
+    linkCard(card) {
+      console.log(this.userCards)
+      for (let item in this.userCards) {
+        if (this.userCards[item].company_name === card.company_name) {
+          alert('Такая карточка уже есть у этого пользователя')
+          return
+        } else {
+          AXIOS.post('/link_card', null, {
+            params: {
+              card_id: card.id,
+              user_id: this.user_id
             }
           })
+              .then(response => {
+                if (response.status === 200) {
+                  this.getUsersCards()
+                }
+              })
+        }
+      }
     }
   }
 }
 </script>
-
-<style scoped>
-
-
-</style>
