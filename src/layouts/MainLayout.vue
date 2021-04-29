@@ -34,7 +34,7 @@
 export default {
   methods: {
     goToLogin() {
-      this.$router.go(this.$router.push('/sales-cards/login'))
+      this.$router.go(this.$router.push('/login'))
     }
   }
 }

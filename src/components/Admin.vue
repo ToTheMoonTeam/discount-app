@@ -207,6 +207,7 @@ export default {
   },
 
   created() {
+    document.title = "Админка"
     AXIOS.get('/get_all_users')
         .then(response => {
           const allUsers = Object.values(response.data.body.all_users)

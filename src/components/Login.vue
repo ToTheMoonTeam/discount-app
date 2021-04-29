@@ -40,13 +40,16 @@ export default {
       valid: true
     }
   },
+  created () {
+    document.title = "Войти";
+  },
   methods: {
     validate() {
       this.$refs.form.validate()
     },
     login() {
       if (this.password === 'admin') {
-        this.$router.go(this.$router.push('/sales-cards/admin'))
+        this.$router.go(this.$router.push('/admin'))
       }
     }
   }

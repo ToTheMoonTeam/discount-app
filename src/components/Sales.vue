@@ -54,6 +54,7 @@ export default {
   },
 
   created() {
+    document.title = "Ваши скидки"
     AXIOS.get('/get_users_cards', {
       params: {
         user_id: this.$route.params.id

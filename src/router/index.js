@@ -13,31 +13,31 @@ const routes = [
     path: '*',
     redirect: '/'
   },
+  // {
+  //   path: '/',
+  //   redirect: '/sales-cards'
+  //   // name: 'Prostomarik',
+  //   // component: Prostomarik,
+  //   // meta: { layout: 'dark' }
+  // },
   {
     path: '/',
-    redirect: '/sales-cards'
-    // name: 'Prostomarik',
-    // component: Prostomarik,
-    // meta: { layout: 'dark' }
-  },
-  {
-    path: '/sales-cards',
     name: 'Form',
     component: Form
   },
   {
-    path: '/sales-cards/sales/:id',
+    path: '/sales/:id',
     name: 'Sales',
     component: Sales
   },
   {
-    path: '/sales-cards/admin',
+    path: '/admin',
     name: 'Admin',
     component: Admin,
     meta: { layout: 'empty' }
   },
   {
-    path: '/sales-cards/login',
+    path: '/login',
     name: 'Login',
     component: Login,
     meta: { layout: 'empty' }

@@ -120,6 +120,10 @@ export default {
     }
   },
 
+  created () {
+    document.title = "Персональные скидки";
+  },
+
   watch: {
     menu(val) {
       val && setTimeout(() => (this.$refs.picker.activePicker = 'YEAR'))
@@ -148,7 +152,7 @@ export default {
       })
           .then(response => {
             if (response.status === 200) {
-              this.$router.go(this.$router.push('/sales-cards/sales/' + response.data.body.usr.id))
+              this.$router.go(this.$router.push('/sales/' + response.data.body.usr.id))
             }
           })
     }
