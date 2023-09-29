@@ -1,46 +1,47 @@
 <template>
   <div id="app">
     <v-app>
-
-      <!--    Продажа нерудных материалов и аренда спецтехники в СПб и области -->
-      <!--    Работаем 24/7-->
-      <!--    Заказать звонок-->
-
       <div class="head">
         <v-container>
           <span class="text">Продажа нерудных материалов и аренда спецтехники в СПб и области</span>
         </v-container>
+
         <v-btn class="mt-1 btn" text dark @click="goToLogin">Войти</v-btn>
       </div>
 
       <div class="logo">
-        <a href="https://idealnerud.ru"><img src="@/assets/logo.png" alt=""></a>
+        <a href="https://idealnerud.ru">
+          <img src="@/assets/logo.png" alt="" />
+        </a>
       </div>
 
       <div class="content">
-        <router-view></router-view>
+        <router-view />
       </div>
 
       <footer class="footer">
         <div class="container">
-          <span>© 2021</span><span class="px-2">«ООО ИДЕАЛТРЕЙД»</span><a href="https://idealnerud.ru/policy/">Политика
-          конфиденциальности</a>
+          <span>© 2021</span><span class="px-2">«ООО ИДЕАЛТРЕЙД»</span
+          ><a href="https://idealnerud.ru/policy/">Политика конфиденциальности</a>
         </div>
       </footer>
     </v-app>
   </div>
 </template>
+
 <script>
 export default {
   methods: {
     goToLogin() {
       this.$router.go(this.$router.push('/login'))
-    }
-  }
+    },
+  },
 }
 </script>
+
 <style>
-html, body {
+html,
+body {
   height: 100%;
 }
 
@@ -49,7 +50,9 @@ html, body {
   flex-direction: column;
   height: 100%;
   text-align: center;
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    'Noto Color Emoji';
 }
 
 .content {
@@ -93,7 +96,7 @@ html, body {
 }
 
 .text {
-  margin-left: 110px
+  margin-left: 110px;
 }
 
 @media screen and (max-width: 700px) {

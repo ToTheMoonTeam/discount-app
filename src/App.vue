@@ -1,15 +1,13 @@
 <template>
   <div id="app">
     <v-app>
-
       <div class="content">
         <v-main>
           <component :is="layout">
-            <router-view></router-view>
+            <router-view />
           </component>
         </v-main>
       </div>
-
     </v-app>
   </div>
 </template>
@@ -20,19 +18,20 @@ import MainLayout from '@/layouts/MainLayout.vue'
 
 export default {
   name: 'app',
-  components: {
-    EmptyLayout, MainLayout
-  },
+
+  components: { EmptyLayout, MainLayout },
+
   computed: {
     layout() {
       return (this.$route.meta.layout || 'main') + '-layout'
-    }
-  }
+    },
+  },
 }
 </script>
 
 <style>
-html, body {
+html,
+body {
   height: 100%;
 }
 
@@ -41,7 +40,9 @@ html, body {
   flex-direction: column;
   height: 100%;
   text-align: center;
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    'Noto Color Emoji';
 }
 
 .content {

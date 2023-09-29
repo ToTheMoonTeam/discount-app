@@ -1,15 +1,7 @@
 <template>
-  <v-dialog
-      v-model="dialog"
-      max-width="500px"
-  >
+  <v-dialog v-model="dialog" max-width="500px">
     <template v-slot:activator="{ on, attrs }">
-      <v-btn
-          color="amber accent-3"
-          class="mb-2 myClass"
-          v-bind="attrs"
-          v-on="on"
-      >
+      <v-btn color="amber accent-3" class="mb-2 myClass" v-bind="attrs" v-on="on">
         Создать скидочную карту
       </v-btn>
     </template>
@@ -21,32 +13,20 @@
 
       <v-card-text>
         <v-container>
-          <v-text-field
-              v-model="company_name"
-              label="Название компании"
-              color="amber accent-4"
-          ></v-text-field>
-          <v-text-field
-              v-model="sale"
-              label="Размер скидки"
-              color="amber accent-4"
-          ></v-text-field>
+          <v-text-field v-model="company_name" label="Название компании" color="amber accent-4" />
+
+          <v-text-field v-model="sale" label="Размер скидки" color="amber accent-4" />
         </v-container>
       </v-card-text>
 
       <v-card-actions class="pb-4">
-        <v-spacer></v-spacer>
-        <v-btn
-            color="amber accent-4"
-            text
-            @click="dialog = false"
-        >
+        <v-spacer />
+
+        <v-btn color="amber accent-4" text @click="dialog = false">
           Закрыть
         </v-btn>
-        <v-btn
-            color="amber accent-3"
-            @click="createCard"
-        >
+
+        <v-btn color="amber accent-3" @click="createCard">
           Создать
         </v-btn>
       </v-card-actions>
@@ -55,32 +35,33 @@
 </template>
 
 <script>
-import {AXIOS} from "@/http-common";
+import { api } from '@/axios'
 
 export default {
-  name: "CreateSaleCardDialog",
+  name: 'CreateSaleCardDialog',
 
   data() {
     return {
       company_name: '',
       sale: null,
-      dialog: false
+      dialog: false,
     }
   },
 
   methods: {
     createCard() {
-      AXIOS.post('/register_card', null, {
+      api.post('/register_card', null, {
         params: {
           company_name: this.company_name,
-          sale: this.sale
-        }
+          sale: this.sale,
+        },
       })
+
       this.dialog = false
       this.sale = null
       this.company_name = ''
     },
-  }
+  },
 }
 </script>
 
